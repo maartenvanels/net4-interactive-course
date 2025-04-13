@@ -5,3 +5,16 @@
 # Idris 1
 *.ibc
 *.o
+
+# Node
+/node_modules
+
+# SvelteKit
+/.svelte-kit
+*.env
+*.env.*
+!.env.example
+
+# IDE config
+.idea
+.vscode
