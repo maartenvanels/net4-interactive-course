@@ -1,0 +1,7 @@
+{
+	"/": [],
+	"/test-latex": [
+		"src/routes/test-latex/+page.js"
+	],
+	"/test-plotly": []
+}
