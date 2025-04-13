@@ -1,7 +1,11 @@
 {
 	"/": [],
+	"/lectures/1": [],
 	"/test-latex": [
 		"src/routes/test-latex/+page.js"
 	],
-	"/test-plotly": []
+	"/test-plotly": [],
+	"/tools/rc-circuit-plotter": [
+		"src/routes/tools/rc-circuit-plotter/+page.ts"
+	]
 }

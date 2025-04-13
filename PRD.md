@@ -142,16 +142,20 @@ Deze aanpak streeft ernaar de leerervaring voor de _gehele_ Netwerken 4 cursus t
 - [x] **Beslissing Hosting:** **Keuze: GitHub Pages.**
 - [x] **SvelteKit Project Opzetten:** Initialiseer een nieuw SvelteKit project (`npm create svelte@latest`).
 - [x] **Tailwind CSS Integreren:** Installeer en configureer Tailwind CSS in het SvelteKit project.
-- [ ] **GitHub Repository & Pages:** Maak een GitHub repository aan en configureer GitHub Pages (deployment via GitHub Actions met `adapter-static` build output).
+- [x] **GitHub Repository & Pages:** Maak een GitHub repository aan en configureer GitHub Pages (deployment via GitHub Actions met `adapter-static` build output).
 - [x] **Projectstructuur Aanmaken:** Definieer de basis mappenstructuur binnen `src/routes`, `src/lib`, `static`.
 - [x] **Reveal.js Integratie Setup:** Installeer Reveal.js (`npm install reveal.js`). Bepaal strategie voor initialisatie (bijv. in een Svelte component in `src/lib/components/`).
-- [ ] **LaTeX Configuratie:** Configureer MathJax/KaTeX plugin binnen de Reveal.js setup. Test in een Svelte component.
+- [x] **LaTeX Configuratie:** Configureer MathJax/KaTeX plugin binnen de Reveal.js setup. Test in een Svelte component.
 - [x] **Plotly.js Integratie Setup:** Installeer Plotly.js (`npm install plotly.js-dist-min`). Maak eventueel een basis wrapper Svelte component (`PlotlyChart.svelte`).
 
 **Fase 2: Ontwikkeling Hub & Les 1**
 
 - [ ] **Hub Pagina Ontwerp & Bouw:** Bouw de root route (`src/routes/+page.svelte`). Voeg titel, introductie, en placeholder-lijst/grid voor links naar lessen toe. Style met Tailwind CSS.
 - [ ] **Basis Layout:** Creëer een SvelteKit layout (`src/routes/+layout.svelte`?) voor consistente navigatie/styling.
+- [ ] **Implementeer Light/Dark Mode Toggle:** Voeg functionaliteit toe om te kunnen schakelen tussen lichte en donkere interface.
+  - [ ] Implementeer een toggle component in de layout
+  - [ ] Configureer Tailwind voor dark mode ondersteuning
+  - [ ] Zorg voor het behouden van gebruikersvoorkeur (localStorage)
 - [ ] **Reveal.js Thema/Styling:** Configureer Reveal.js thema en/of gebruik Tailwind CSS voor een modern uiterlijk ([REQ-DESIGN-01]).
 - [ ] **Les 1 Presentatie Route (`src/routes/lectures/1/+page.svelte`):**
   - [ ] Implementeer de route die de Reveal.js presentatie voor Les 1 laadt/initialiseert.

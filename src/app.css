@@ -1,3 +1,7 @@
-@import 'tailwindcss';
-@plugin '@tailwindcss/forms';
-@plugin '@tailwindcss/typography';
+/* Import base styles first */
+@import './lib/styles/base.css';
+
+/* Then Tailwind styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

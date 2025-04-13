@@ -1,119 +1,79 @@
 <script>
-  // Main hub page for the Net4 Interactive Course
+  // Later: Fetch or define lecture list
+  const lectures = [
+    {
+      id: 1,
+      title: "Les 1: Introductie & RC Kring (Ontladen/Opladen)",
+      path: "/lectures/1",
+    },
+    // { id: 2, title: 'Les 2: ...', path: '/lectures/2' }, // Placeholder
+  ];
+
+  const tools = [
+    {
+      id: "rc-circuit-plotter",
+      title: "RC Kring Plotter",
+      path: "/tools/rc-circuit-plotter",
+    },
+    // { id: 'rl-circuit-plotter', title: 'RL Kring Plotter', path: '/tools/rl-circuit-plotter' }, // Placeholder
+  ];
 </script>
 
 <svelte:head>
-  <title>Netwerken 4 Interactieve Cursus</title>
+  <title>Netwerken 4 Interactief - Hub</title>
+  <meta
+    name="description"
+    content="Hoofdpagina voor de interactieve cursus Netwerken 4"
+  />
 </svelte:head>
 
-<main class="container mx-auto px-4 py-8">
-  <header class="text-center mb-12">
-    <h1 class="text-4xl font-bold mb-4">Netwerken 4 Interactieve Cursus</h1>
-    <p class="text-xl text-gray-600">
-      Een moderne, interactieve presentatieomgeving voor de cursus Netwerken 4
-    </p>
-  </header>
+<div class="space-y-8">
+  <h1 class="text-3xl font-bold text-blue-700 dark:text-blue-400">
+    Welkom bij Netwerken 4 Interactief
+  </h1>
 
-  <section class="mb-8">
-    <h2 class="text-2xl font-bold mb-4 border-b pb-2">Lessen</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- This will be populated with actual lessons later -->
-      <div
-        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-      >
-        <div class="bg-blue-600 text-white p-4">
-          <h3 class="text-xl font-semibold">Les 1: RC-circuits</h3>
-        </div>
-        <div class="p-6">
-          <p class="mb-4 text-gray-600">
-            Introductie tot RC-circuits, tijdconstanten en responsies.
-          </p>
+  <p class="text-lg">
+    Dit is de centrale hub voor het interactieve lesmateriaal van de cursus
+    Netwerken 4. Navigeer naar de verschillende lessen en interactieve tools
+    hieronder.
+  </p>
+
+  <section>
+    <h2 class="text-2xl font-semibold mb-4">Lessen</h2>
+    <ul class="list-disc list-inside space-y-2">
+      {#each lectures as lecture}
+        <li>
           <a
-            href="/lectures/1"
-            class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
+            href={lecture.path}
+            class="text-blue-600 hover:underline dark:text-blue-400"
           >
-            Bekijk les
+            {lecture.title}
           </a>
-        </div>
-      </div>
-
-      <!-- Placeholder for future lessons -->
-      <div class="bg-white rounded-lg shadow-md overflow-hidden opacity-50">
-        <div class="bg-blue-600 text-white p-4">
-          <h3 class="text-xl font-semibold">Les 2: Komend binnenkort</h3>
-        </div>
-        <div class="p-6">
-          <p class="mb-4 text-gray-600">Inhoud in ontwikkeling.</p>
-          <button
-            disabled
-            class="inline-block bg-gray-400 text-white font-semibold py-2 px-4 rounded cursor-not-allowed"
-          >
-            Bekijk les
-          </button>
-        </div>
-      </div>
-    </div>
+        </li>
+      {:else}
+        <p>Nog geen lessen beschikbaar.</p>
+      {/each}
+    </ul>
   </section>
 
-  <section class="mb-8">
-    <h2 class="text-2xl font-bold mb-4 border-b pb-2">Interactieve Tools</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div
-        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-      >
-        <div class="bg-green-600 text-white p-4">
-          <h3 class="text-xl font-semibold">RC Circuit Simulator</h3>
-        </div>
-        <div class="p-6">
-          <p class="mb-4 text-gray-600">
-            Visualiseer de op- en ontlaadkromme van een RC-circuit en
-            experimenteer met verschillende parameters.
-          </p>
+  <section>
+    <h2 class="text-2xl font-semibold mb-4">Interactieve Tools</h2>
+    <ul class="list-disc list-inside space-y-2">
+      {#each tools as tool}
+        <li>
           <a
-            href="/test-plotly"
-            class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded"
+            href={tool.path}
+            class="text-blue-600 hover:underline dark:text-blue-400"
           >
-            Open simulator
+            {tool.title}
           </a>
-        </div>
-      </div>
-    </div>
+        </li>
+      {:else}
+        <p>Nog geen tools beschikbaar.</p>
+      {/each}
+    </ul>
   </section>
-
-  <section class="mb-8">
-    <h2 class="text-2xl font-bold mb-4 border-b pb-2">Test Pagina's</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div
-        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-      >
-        <div class="bg-purple-600 text-white p-4">
-          <h3 class="text-xl font-semibold">LaTeX Test</h3>
-        </div>
-        <div class="p-6">
-          <p class="mb-4 text-gray-600">
-            Test pagina voor LaTeX rendering met Reveal.js.
-          </p>
-          <a
-            href="/test-latex"
-            class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded"
-          >
-            Open test
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="mt-12 pt-8 border-t text-center text-gray-600">
-    <p>© 2025 - Netwerken 4 Interactieve Cursus</p>
-    <p class="mt-2">
-      <a
-        href="https://github.com/your-username/net4-interactive-course"
-        class="text-blue-600 hover:underline">GitHub Repository</a
-      >
-    </p>
-  </footer>
-</main>
+</div>
 
 <style>
   /* Add any page-specific styles here */

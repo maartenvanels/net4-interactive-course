@@ -5,15 +5,19 @@ export const nodes = [
 	() => import('./nodes/1'),
 	() => import('./nodes/2'),
 	() => import('./nodes/3'),
-	() => import('./nodes/4')
+	() => import('./nodes/4'),
+	() => import('./nodes/5'),
+	() => import('./nodes/6')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
 		"/": [2],
-		"/test-latex": [3],
-		"/test-plotly": [4]
+		"/lectures/1": [3],
+		"/test-latex": [4],
+		"/test-plotly": [5],
+		"/tools/rc-circuit-plotter": [6]
 	};
 
 export const hooks = {
