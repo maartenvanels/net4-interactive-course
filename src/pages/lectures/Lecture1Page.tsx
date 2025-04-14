@@ -1,43 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RevealPresentation from "../../components/shared/RevealPresentation";
+import { loadMarkdownFile } from "../../utils/markdownLoader";
 
 const Lecture1Page: React.FC = () => {
-  // Define the presentation content in Markdown format
-  const markdownContent = `
-# Lecture 1: Introduction to RC Circuits
+  const [markdownContent, setMarkdownContent] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-Welcome to the first lecture of Network Theory 4
+  useEffect(() => {
+    async function loadContent() {
+      try {
+        setIsLoading(true);
+        const content = await loadMarkdownFile("lecture1.md");
+        setMarkdownContent(content);
+        setError(null);
+      } catch (err) {
+        console.error("Failed to load lecture content", err);
+        setError("Failed to load lecture content. Please try again later.");
+      } finally {
+        setIsLoading(false);
+      }
+    }
 
----
+    loadContent();
+  }, []);
 
-## RC Circuit Fundamentals
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500 mx-auto mb-4"></div>
+          <p className="text-gray-700 dark:text-gray-300">
+            Loading presentation...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
-* Resistors and capacitors in series
-* Time constant: τ = RC
-* Charging and discharging behavior
-
----
-
-## Circuit Equations
-
-For charging:
-
-$v_C(t) = V_s(1 - e^{-t/\\tau})$
-
-For discharging:
-
-$v_C(t) = V_0 e^{-t/\\tau}$
-
-Where τ = RC is the time constant
-
----
-
-## Interactive RC Circuit Tool
-
-Experiment with different R and C values:
-
-[RC Circuit Simulator](/tools/rc-plotter) {.inline-block .mt-4 .bg-primary-600 .hover:bg-primary-700 .text-white .font-bold .py-2 .px-4 .rounded .transition-colors}
-  `;
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <div className="bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 p-4 rounded-lg max-w-md">
+          <h3 className="font-bold mb-2">Error</h3>
+          <p>{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="h-full">

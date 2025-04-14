@@ -87,6 +87,8 @@ function RevealPresentation({
 
     // Cleanup previous instance if it exists
     if (revealInstance.current) {
+      // Using any to bypass TypeScript checking since destroy() may not be in types
+      (revealInstance.current as any).destroy?.();
       revealInstance.current = null;
     }
 
@@ -95,8 +97,14 @@ function RevealPresentation({
       // Default opties
       hash: true,
       slideNumber: true,
+      embedded: false,
       plugins: [Markdown, Notes, Highlight, RevealMath.MathJax3],
       ...options,
+      // Markdown configuratie
+      markdown: {
+        smartypants: true,
+        smartLists: true,
+      },
       // MathJax configuratie
       math: {
         mathjax: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js",
@@ -116,6 +124,31 @@ function RevealPresentation({
     // Initialize with a small delay to ensure DOM is ready
     setTimeout(() => {
       if (revealRef.current) {
+        // Prepare slides
+        if (markdownContent) {
+          // Create a markdown section
+          const section = document.createElement("section");
+          section.setAttribute("data-markdown", "");
+          section.setAttribute("data-separator", "\\n---\\n");
+          section.setAttribute("data-separator-vertical", "\\n--\\n");
+
+          const textarea = document.createElement("textarea");
+          textarea.setAttribute("data-template", "");
+          textarea.textContent = markdownContent;
+
+          section.appendChild(textarea);
+
+          // Clear existing slides first
+          if (revealRef.current.querySelector(".slides")) {
+            const slidesContainer = revealRef.current.querySelector(".slides");
+            if (slidesContainer) {
+              slidesContainer.innerHTML = "";
+              slidesContainer.appendChild(section);
+            }
+          }
+        }
+
+        // Initialize Reveal
         revealInstance.current = new Reveal(revealRef.current, revealOptions);
         revealInstance.current.initialize().then(() => {
           // Force layout recalculation
@@ -199,15 +232,8 @@ function RevealPresentation({
         style={{ width: "100%", height: "100%", display: "block" }}
       >
         <div className="slides">
-          {/* If markdownContent is provided, use it */}
-          {markdownContent ? (
-            <section data-markdown>
-              <textarea data-template>{markdownContent}</textarea>
-            </section>
-          ) : (
-            // Otherwise use the children
-            children
-          )}
+          {/* If markdown is provided, it's handled in the useEffect. Otherwise, show children */}
+          {!markdownContent && children}
         </div>
       </div>
     </div>
