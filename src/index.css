@@ -248,3 +248,47 @@ button:focus-visible {
 .reveal .slides > section > section {
   visibility: visible;
 }
+
+/* Fullscreen mode for presentations */
+.reveal-container.fullscreen {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999;
+}
+
+/* Ensure proper rendering of Markdown content */
+.reveal .slides section[data-markdown] {
+  text-align: left;
+}
+
+.reveal .slides section[data-markdown] ul, 
+.reveal .slides section[data-markdown] ol {
+  display: block;
+  margin-left: 2em;
+}
+
+.reveal .slides section[data-markdown] pre,
+.reveal .slides section[data-markdown] code {
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+}
+
+.dark .reveal .slides section[data-markdown] pre,
+.dark .reveal .slides section[data-markdown] code {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Style the fullscreen button */
+.reveal-container .fullscreen-toggle {
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.reveal-container .fullscreen-toggle:hover {
+  opacity: 1;
+}
