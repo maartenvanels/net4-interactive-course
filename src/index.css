@@ -226,6 +226,69 @@ button:focus-visible {
   text-align: left;
 }
 
+.reveal .slides section {
+  height: 100%;
+}
+
+/* Fix for slide visibility */
+.reveal .slides > section,
+.reveal .slides > section > section {
+  visibility: visible !important;
+}
+
+/* Better code block styling */
+.reveal pre {
+  width: 100%;
+  padding: 1em;
+  margin: 1em 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.dark .reveal pre {
+  background-color: #2d2d2d;
+}
+
+/* Ensure links are visible and clickable */
+.reveal a {
+  color: #0073f5;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.reveal a:hover {
+  color: #3291ff;
+  text-decoration: underline;
+}
+
+.dark .reveal a {
+  color: #42affa;
+}
+
+.dark .reveal a:hover {
+  color: #8dcfff;
+}
+
+/* Fix for codeblocks and math rendering */
+.reveal code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  padding: 0.1em 0.3em;
+}
+
+.dark .reveal code {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.reveal pre code {
+  display: block;
+  padding: 0.5em;
+  overflow: auto;
+  max-height: 400px;
+  word-wrap: normal;
+}
+
 .reveal-container {
   position: relative;
   height: calc(100vh - 8rem);
@@ -241,12 +304,6 @@ button:focus-visible {
 /* Ensure link buttons are visible in presentations */
 .reveal .slides section a.inline-block {
   display: inline-block;
-}
-
-/* Fix for slide visibility */
-.reveal .slides > section, 
-.reveal .slides > section > section {
-  visibility: visible;
 }
 
 /* Fullscreen mode for presentations */

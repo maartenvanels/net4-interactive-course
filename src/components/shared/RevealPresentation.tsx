@@ -98,12 +98,21 @@ function RevealPresentation({
       hash: true,
       slideNumber: true,
       embedded: false,
+      width: "100%",
+      height: "100%",
+      margin: 0.1,
+      minScale: 0.2,
+      maxScale: 2.0,
+      center: false,
+      transition: "slide", // none/fade/slide/convex/concave/zoom
       plugins: [Markdown, Notes, Highlight, RevealMath.MathJax3],
       ...options,
       // Markdown configuratie
       markdown: {
         smartypants: true,
         smartLists: true,
+        gfm: true,
+        breaks: true,
       },
       // MathJax configuratie
       math: {
@@ -118,7 +127,6 @@ function RevealPresentation({
       },
       // Set the display mode to ensure proper sizing
       display: "block",
-      margin: 0.1,
     };
 
     // Initialize with a small delay to ensure DOM is ready
@@ -129,8 +137,12 @@ function RevealPresentation({
           // Create a markdown section
           const section = document.createElement("section");
           section.setAttribute("data-markdown", "");
-          section.setAttribute("data-separator", "\\n---\\n");
-          section.setAttribute("data-separator-vertical", "\\n--\\n");
+
+          // Fix the slide separator configuration - ensure proper escaping
+          section.setAttribute("data-separator", "---"); // Changed from '\\n---\\n'
+          section.setAttribute("data-separator-vertical", "--"); // Changed from '\\n--\\n'
+          section.setAttribute("data-separator-notes", "^Note:");
+          section.setAttribute("data-charset", "utf-8");
 
           const textarea = document.createElement("textarea");
           textarea.setAttribute("data-template", "");
