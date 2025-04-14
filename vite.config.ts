@@ -1,27 +1,7 @@
-import tailwindcss from '@tailwindcss/vite';
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
 
+// https://vite.dev/config/
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()],
-	resolve: {
-		alias: {
-			'buffer/': 'buffer/',
-			'buffer': 'buffer/'
-		}
-	},
-	optimizeDeps: {
-		include: ['buffer'],
-		esbuildOptions: {
-			define: {
-				global: 'globalThis'
-			}
-		}
-	},
-	build: {
-		commonjsOptions: {
-			include: [/node_modules/],
-		}
-	}
-});
+  plugins: [react()],
+})

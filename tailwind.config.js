@@ -1,37 +1,52 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
   darkMode: 'class',
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       colors: {
-        // Define your color palette explicitly
-        blue: {
-          '50': '#eff6ff',
-          '100': '#dbeafe',
-          '600': '#2563eb',
-          '700': '#1d4ed8',
+        primary: {
+          50: '#e6f1fe',
+          100: '#cce3fd',
+          200: '#99c7fb',
+          300: '#66abf9',
+          400: '#338ff7',
+          500: '#0073f5',
+          600: '#005cc4',
+          700: '#004593',
+          800: '#002e62',
+          900: '#001731',
         },
-        gray: {
-          '50': '#f9fafb',
-          '200': '#e5e7eb',
-          '300': '#d1d5db',
-          '400': '#9ca3af',
-          '600': '#4b5563',
-          '700': '#374151',
-          '800': '#1f2937',
+        secondary: {
+          50: '#e6f7f5',
+          100: '#ccefea',
+          200: '#99dfd5',
+          300: '#66cfbf',
+          400: '#33bfaa',
+          500: '#00af95',
+          600: '#008c77',
+          700: '#006959',
+          800: '#00463c',
+          900: '#00231e',
         },
-        indigo: {
-          '100': '#e0e7ff',
-          '200': '#c7d2fe',
-          '600': '#4f46e5',
-          '700': '#4338ca',
-          '900': '#312e81',
-        },
-        purple: {
-          '100': '#f3e8ff',
-        },
+      },
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+        'bounce-slow': 'bounce 2s infinite',
+      },
+      boxShadow: {
+        'soft': '0 2px 15px 0 rgba(0, 0, 0, 0.05)',
+        'inner-soft': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+      },
+      borderRadius: {
+        'xl': '1rem',
+        '2xl': '1.5rem',
+        '3xl': '2rem',
       },
     },
   },
+  plugins: [],
 } 

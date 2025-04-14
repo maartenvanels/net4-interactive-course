@@ -1,88 +1,54 @@
-# net4-interactive-course
+# React + TypeScript + Vite
 
-Interactive online presentation environment for the Netwerken 4 course.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Vision
+Currently, two official plugins are available:
 
-This project aims to transform the Netwerken 4 course material into a dynamic, online learning environment that is:
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- **Centrally Accessible:** A main hub page provides access to all lecture modules and interactive tools.
-- **Promotes Active Learning:** Students can actively explore concepts through integrated interactive simulations and visualizations.
-- **Modular and Maintainable:** Each lecture is a self-contained module, simplifying updates.
-- **Consistent and Modern:** Uniform, modern look and feel across the site.
-- **Effectively Leverages Technology:** Enhances didactics using SvelteKit, Tailwind CSS, Reveal.js, and Plotly.js, hosted on GitHub Pages.
-- **Creates a Sustainable Workflow:** Markdown/HTML-based workflow for easier content development and maintenance.
+## Expanding the ESLint configuration
 
-## Features
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-- **Responsive Design:** Works on desktop and mobile devices
-- **Light/Dark Mode:** Toggle between light and dark interface (in progress)
-- **Interactive Tools:** Dynamic visualizations to help understand concepts
-- **Modern Presentation:** Using Reveal.js for slide-based lectures
-
-## Technologies Used
-
-- **Web Framework:** SvelteKit
-- **Styling:** Tailwind CSS
-- **Presentations:** Reveal.js (integrated within SvelteKit)
-- **Interactive Plotting:** Plotly.js (integrated within SvelteKit components)
-- **Hosting:** GitHub Pages (via `adapter-static`)
-
-## Project Structure (Simplified)
-
-```
-/src/
-    routes/
-        +page.svelte            (Hub page)
-        lectures/
-            [lecture_id]/
-                +page.svelte    (Loads Reveal.js presentation)
-        tools/
-            [tool_id]/
-                +page.svelte    (Loads interactive tool)
-    lib/
-        components/             (Reusable Svelte components like RevealPresentation, PlotlyChart)
-        styles/                 (Global styles if needed)
-        utils/                  (Utility functions)
-/static/                        (Static assets like images)
-/lecture_specific_assets/       (Consider placing within /static/lectures/[id]/)
-/tailwind.config.cjs
-/svelte.config.js
-/package.json
-/README.md
-/PRD.md
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
 ```
 
-## Development
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-1.  **Install Dependencies:**
-    ```bash
-    npm install
-    ```
-2.  **Run Development Server:**
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-    ```bash
-    npm run dev -- --open
-    ```
-
-    This will start the development server, usually on `http://localhost:5173`.
-
-3.  **Build for Production (GitHub Pages):**
-    ```bash
-    npm run build
-    ```
-    This uses `adapter-static` to create a production-ready build in the `build/` directory, suitable for hosting on GitHub Pages.
-
-## Adding a New Lecture
-
-1.  Create a new directory under `src/routes/lectures/`, e.g., `src/routes/lectures/2/`.
-2.  Inside this directory, create a `+page.svelte` file.
-3.  Use a `RevealPresentation` component (or similar structure) within `+page.svelte` to define the lecture slides using Markdown or HTML `<section>` tags.
-4.  Add content, LaTeX (using configured MathJax/KaTeX), and images (place images in `static/` or a relevant subdirectory).
-5.  If needed, create an associated interactive tool under `src/routes/tools/`.
-6.  Update the hub page (`src/routes/+page.svelte`) to link to the new lecture route (`/lectures/2`).
-7.  Test locally using `npm run dev`.
-
-## Live Site
-
-(Link to be added once deployed on GitHub Pages)
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
