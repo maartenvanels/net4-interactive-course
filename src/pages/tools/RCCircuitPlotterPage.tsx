@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import ChartComponent from "../../components/shared/ChartComponent";
 import { ChartData } from "chart.js";
 import { useTheme } from "../../hooks/useTheme";
