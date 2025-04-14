@@ -16,15 +16,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout without submodules
         uses: actions/checkout@v3
         with:
           submodules: false # Skip submodule initialization
 
-      - name: Disable git update recursion
+      - name: Create net4 directory if needed
         run: |
-          git config --global submodule.recurse false
-          git config --global submodule.net4.update none
+          mkdir -p net4
+          touch net4/.gitkeep
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
