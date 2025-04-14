@@ -98,13 +98,16 @@ function RevealPresentation({
       hash: true,
       slideNumber: true,
       embedded: false,
-      width: 960,
+      // Stel vaste afmetingen in met een breder formaat om verticale tekst te voorkomen
+      width: 1200, // Verhoogd van 960
       height: 700,
-      margin: 0.1,
+      margin: 0.15, // Verhoogd voor betere marge
       minScale: 0.2,
       maxScale: 2.0,
       disableLayout: false,
       center: true,
+      overview: true, // Voeg overzicht toe
+      touch: true, // Verbeterde aanraakbediening
       transition: "slide", // none/fade/slide/convex/concave/zoom
       plugins: [Markdown, Notes, Highlight, RevealMath.MathJax3],
       ...options,
@@ -246,8 +249,10 @@ function RevealPresentation({
           width: "100%",
           height: "100%",
           display: "block",
-          maxWidth: "1200px",
+          maxWidth: "1400px", // Verhoogd voor meer horizontale ruimte
           margin: "0 auto",
+          direction: "ltr", // Expliciete tekstrichting
+          textOrientation: "mixed", // Normale tekstoriëntatie
         }}
       >
         <div className="slides">

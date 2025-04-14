@@ -225,63 +225,111 @@ button:focus-visible {
 /* Better sizing for presentations to prevent stretched appearance */
 .reveal .slides {
   text-align: left;
-  /* Prevent content from stretching */
   width: auto !important;
   height: auto !important;
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
 }
 
 .reveal .slides section {
   height: auto;
   min-height: 500px;
-  padding: 20px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
 }
 
-/* Make content more responsive */
+/* Standaard tekst horizontaal */
+.reveal .slides section h1,
+.reveal .slides section h2, 
+.reveal .slides section h3,
+.reveal .slides section p,
+.reveal .slides section ul,
+.reveal .slides section li,
+.reveal .slides section pre,
+.reveal .slides section code {
+  width: 100% !important;
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  white-space: normal !important;
+  display: block !important;
+}
+
+/* Zorg dat tekst niet te smal wordt */
 .reveal .slides section h1 {
   font-size: 2.5rem;
+  margin-bottom: 1rem !important;
+  text-align: left !important;
 }
 
 .reveal .slides section h2 {
   font-size: 2rem;
+  margin-bottom: 1rem !important;
+  text-align: left !important;
 }
 
 .reveal .slides section h3 {
   font-size: 1.5rem;
+  margin-bottom: 1rem !important;
+  text-align: left !important;
 }
 
 .reveal .slides section p,
 .reveal .slides section li {
   font-size: 1.2rem;
   line-height: 1.5;
+  margin-bottom: 0.5rem !important;
+  text-align: left !important;
 }
 
-/* Ensure proper text wrapping */
-.reveal .slides section p,
-.reveal .slides section li,
-.reveal .slides section pre,
-.reveal .slides section code {
-  max-width: 100%;
-  word-wrap: break-word;
+/* Zorg voor goede afstand tussen list items */
+.reveal .slides section li {
+  margin-left: 2rem !important;
 }
 
+.reveal .slides section ul,
+.reveal .slides section ol {
+  display: block !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  margin-left: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Zorg dat code-blokken goed geformatteerd zijn */
+.reveal .slides section pre {
+  display: block !important;
+  margin: 1rem 0 !important;
+  width: 100% !important;
+  white-space: pre !important;
+  overflow-x: auto !important;
+}
+
+/* Aangepaste reveal container grootte */
 .reveal-container {
   position: relative;
   height: calc(100vh - 8rem);
+  max-height: 800px;
   overflow: hidden;
   display: flex;
   justify-content: center;
+  direction: ltr;
 }
 
 .reveal {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  direction: ltr !important;
 }
 
 /* Fullscreen adjustments */
@@ -291,7 +339,12 @@ button:focus-visible {
   left: 0;
   width: 100vw !important;
   height: 100vh !important;
+  max-height: none;
   z-index: 9999;
+}
+
+.fullscreen .reveal {
+  max-width: 90vw;
 }
 
 /* Ensure proper rendering of Markdown content */
