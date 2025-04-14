@@ -21,6 +21,11 @@ jobs:
         with:
           submodules: false # Skip submodule initialization
 
+      - name: Disable git update recursion
+        run: |
+          git config --global submodule.recurse false
+          git config --global submodule.net4.update none
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
