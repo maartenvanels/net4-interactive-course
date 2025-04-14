@@ -222,12 +222,116 @@ button:focus-visible {
   color: #42affa;
 }
 
+/* Better sizing for presentations to prevent stretched appearance */
 .reveal .slides {
   text-align: left;
+  /* Prevent content from stretching */
+  width: auto !important;
+  height: auto !important;
 }
 
 .reveal .slides section {
+  height: auto;
+  min-height: 500px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* Make content more responsive */
+.reveal .slides section h1 {
+  font-size: 2.5rem;
+}
+
+.reveal .slides section h2 {
+  font-size: 2rem;
+}
+
+.reveal .slides section h3 {
+  font-size: 1.5rem;
+}
+
+.reveal .slides section p,
+.reveal .slides section li {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* Ensure proper text wrapping */
+.reveal .slides section p,
+.reveal .slides section li,
+.reveal .slides section pre,
+.reveal .slides section code {
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.reveal-container {
+  position: relative;
+  height: calc(100vh - 8rem);
+  max-height: 700px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.reveal {
+  position: relative;
+  width: 100%;
   height: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Fullscreen adjustments */
+.reveal-container.fullscreen {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-height: none;
+  z-index: 9999;
+}
+
+.fullscreen .reveal {
+  max-width: 90vw;
+}
+
+/* Ensure proper rendering of Markdown content */
+.reveal .slides section[data-markdown] {
+  text-align: left;
+}
+
+.reveal .slides section[data-markdown] ul, 
+.reveal .slides section[data-markdown] ol {
+  display: block;
+  margin-left: 2em;
+}
+
+.reveal .slides section[data-markdown] pre,
+.reveal .slides section[data-markdown] code {
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+}
+
+.dark .reveal .slides section[data-markdown] pre,
+.dark .reveal .slides section[data-markdown] code {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Style the fullscreen button */
+.reveal-container .fullscreen-toggle {
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.reveal-container .fullscreen-toggle:hover {
+  opacity: 1;
 }
 
 /* Fix for slide visibility */
@@ -289,63 +393,7 @@ button:focus-visible {
   word-wrap: normal;
 }
 
-.reveal-container {
-  position: relative;
-  height: calc(100vh - 8rem);
-  overflow: hidden;
-}
-
-.reveal {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
 /* Ensure link buttons are visible in presentations */
 .reveal .slides section a.inline-block {
   display: inline-block;
-}
-
-/* Fullscreen mode for presentations */
-.reveal-container.fullscreen {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100vw !important;
-  height: 100vh !important;
-  z-index: 9999;
-}
-
-/* Ensure proper rendering of Markdown content */
-.reveal .slides section[data-markdown] {
-  text-align: left;
-}
-
-.reveal .slides section[data-markdown] ul, 
-.reveal .slides section[data-markdown] ol {
-  display: block;
-  margin-left: 2em;
-}
-
-.reveal .slides section[data-markdown] pre,
-.reveal .slides section[data-markdown] code {
-  font-family: monospace;
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-  padding: 0.2em 0.4em;
-}
-
-.dark .reveal .slides section[data-markdown] pre,
-.dark .reveal .slides section[data-markdown] code {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* Style the fullscreen button */
-.reveal-container .fullscreen-toggle {
-  opacity: 0.6;
-  transition: opacity 0.2s;
-}
-
-.reveal-container .fullscreen-toggle:hover {
-  opacity: 1;
 }

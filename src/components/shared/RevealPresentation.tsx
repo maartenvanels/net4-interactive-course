@@ -98,12 +98,13 @@ function RevealPresentation({
       hash: true,
       slideNumber: true,
       embedded: false,
-      width: "100%",
-      height: "100%",
+      width: 960,
+      height: 700,
       margin: 0.1,
       minScale: 0.2,
       maxScale: 2.0,
-      center: false,
+      disableLayout: false,
+      center: true,
       transition: "slide", // none/fade/slide/convex/concave/zoom
       plugins: [Markdown, Notes, Highlight, RevealMath.MathJax3],
       ...options,
@@ -241,7 +242,13 @@ function RevealPresentation({
       <div
         className={`reveal ${isDark ? "dark-theme" : "light-theme"}`}
         ref={revealRef}
-        style={{ width: "100%", height: "100%", display: "block" }}
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "block",
+          maxWidth: "1200px",
+          margin: "0 auto",
+        }}
       >
         <div className="slides">
           {/* If markdown is provided, it's handled in the useEffect. Otherwise, show children */}
