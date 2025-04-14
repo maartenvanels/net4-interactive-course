@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+}
+
+/* Light mode colors */
+:root {
+  color: #213547;
+  background-color: #f8f9fa;
+}
+
+/* Dark mode colors */
+.dark {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #121212;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* Custom Animations */
+@layer utilities {
+  /* Fade In Animation */
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+
+  /* Slide Up Animation */
+  .animate-slide-up {
+    opacity: 0;
+    transform: translateY(1rem);
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  /* Slide In From Right Animation */
+  .animate-slide-in-right {
+    opacity: 0;
+    transform: translateX(1rem);
+    animation: slideInRight 0.5s ease-out forwards;
+  }
+
+  /* Slide In From Left Animation */
+  .animate-slide-in-left {
+    opacity: 0;
+    transform: translateX(-1rem);
+    animation: slideInLeft 0.5s ease-out forwards;
+  }
+
+  /* Scale In Animation */
+  .animate-scale-in {
+    opacity: 0;
+    transform: scale(0.95);
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  /* Card Hover Animation */
+  .card-hover {
+    transition-property: all;
+    transition-duration: 300ms;
+  }
+  .card-hover:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-0.25rem);
+  }
+
+  /* Button Animations */
+  .btn-animate {
+    transition-property: all;
+    transition-duration: 300ms;
+  }
+  .btn-animate:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  .btn-animate:active {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from { 
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+  to { 
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from { 
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+  to { 
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Navigation links */
+.nav-link {
+  @apply text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors;
+}
+
+/* Dark mode adjustments for RC plotter page */
+.dark .bg-white {
+  @apply bg-gray-800;
+}
+
+.dark .text-gray-900 {
+  @apply text-white;
+}
+
+.dark input[type="range"] {
+  @apply bg-gray-700;
+}
+
+/* Reveal.js adjustments for dark mode */
+.dark .reveal {
+  color: #fff;
+}
+
+.dark .reveal h1,
+.dark .reveal h2,
+.dark .reveal h3,
+.dark .reveal h4,
+.dark .reveal h5,
+.dark .reveal h6 {
+  color: #fff;
+}
+
+.dark .reveal a {
+  color: #42affa;
+}
+
+.dark .reveal .progress {
+  color: #42affa;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal-container {
+  position: relative;
+  height: calc(100vh - 8rem);
+  overflow: hidden;
+}
+
+.reveal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Ensure link buttons are visible in presentations */
+.reveal .slides section a.inline-block {
+  display: inline-block;
+}
+
+/* Fix for slide visibility */
+.reveal .slides > section, 
+.reveal .slides > section > section {
+  visibility: visible;
+}
