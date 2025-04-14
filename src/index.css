@@ -271,7 +271,6 @@ button:focus-visible {
 .reveal-container {
   position: relative;
   height: calc(100vh - 8rem);
-  max-height: 700px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -292,12 +291,7 @@ button:focus-visible {
   left: 0;
   width: 100vw !important;
   height: 100vh !important;
-  max-height: none;
   z-index: 9999;
-}
-
-.fullscreen .reveal {
-  max-width: 90vw;
 }
 
 /* Ensure proper rendering of Markdown content */
